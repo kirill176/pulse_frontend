@@ -1,0 +1,9 @@
+.google-button {
+  display: flex;
+  align-items: center;
+
+  .icon-google {
+    max-width: 24px;
+    max-height: 24px;
+  }
+}
