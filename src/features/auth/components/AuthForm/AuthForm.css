@@ -1,0 +1,22 @@
+.login-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .error-message {
+      font-size: 14px;
+      color: var(--dark-red);
+      text-align: center;
+    }
+  }
+
+  .auth-switch {
+    text-align: center;
+    color: var(--grey-500);
+  }
+}
