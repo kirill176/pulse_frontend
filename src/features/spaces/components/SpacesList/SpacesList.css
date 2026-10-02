@@ -1,0 +1,11 @@
+.space-list-wrapper {
+  .spaces-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .btn {
+      max-width: max-content;
+    }
+  }
+}

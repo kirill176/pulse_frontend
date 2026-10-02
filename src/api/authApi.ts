@@ -1,17 +1,22 @@
-import { AuthDto } from "@app-types/authTypes";
-import { apiClient } from "./apiClient";
-import { EMethod } from "@models/enums";
+import { AuthDto } from '@app-types/authTypes';
+import { EMethod } from '@models/enums';
+import { apiClient } from './apiClient';
 
 export const authApi = {
   login: (body: AuthDto) =>
-    apiClient("auth/login", {
+    apiClient('auth/login', {
       method: EMethod.POST,
-      body,
+      body
     }),
 
   registration: (body: AuthDto) =>
-    apiClient("auth/registration", {
+    apiClient('auth/registration', {
       method: EMethod.POST,
-      body,
+      body
     }),
+
+  logout: () =>
+    apiClient('auth/logout', {
+      method: EMethod.POST
+    })
 };

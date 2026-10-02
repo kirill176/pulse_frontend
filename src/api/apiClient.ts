@@ -1,9 +1,9 @@
-import { EMethod, EStatusCode } from "@models/enums";
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
+import { EMethod, EStatusCode } from '@models/enums';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? '';
 
-export interface ApiOptions extends Omit<RequestInit, "body"> {
+export interface ApiOptions extends Omit<RequestInit, 'body'> {
   body?: unknown;
   params?: Record<string, string | number | boolean | undefined>;
 }
@@ -11,18 +11,10 @@ export interface ApiOptions extends Omit<RequestInit, "body"> {
 let isRefreshing = false;
 let refrehPromise: Promise<boolean> | null = null;
 
-export const apiClient = async <T>(
-  endpoint: string,
-  options: ApiOptions = {},
-): Promise<T> => {
-  const {
-    body: rawBody,
-    params,
-    headers: customHeaders,
-    ...restOptions
-  } = options;
+export const apiClient = async <T>(endpoint: string, options: ApiOptions = {}): Promise<T> => {
+  const { body: rawBody, params, headers: customHeaders, ...restOptions } = options;
 
-  let url = `${BASE_URL.replace(/\$/, "")}/${endpoint.replace(/^\//, "")}`;
+  let url = `${BASE_URL.replace(/\$/, '')}/${endpoint.replace(/^\//, '')}`;
 
   if (params) {
     const searchParams = new URLSearchParams();
@@ -40,13 +32,13 @@ export const apiClient = async <T>(
 
   if (rawBody) {
     if (
-      typeof rawBody === "object" &&
+      typeof rawBody === 'object' &&
       !(rawBody instanceof FormData) &&
       !(rawBody instanceof Blob)
     ) {
       formattedBody = JSON.stringify(rawBody);
-      if (!headers.has("Content-Type")) {
-        headers.set("Content-Type", "application/json");
+      if (!headers.has('Content-Type')) {
+        headers.set('Content-Type', 'application/json');
       }
     } else {
       formattedBody = rawBody as BodyInit;
@@ -57,14 +49,16 @@ export const apiClient = async <T>(
     ...restOptions,
     headers,
     body: formattedBody,
-    credentials: "include",
+    credentials: 'include'
   };
 
   let response = await fetch(url, config);
 
   if (
     response.status === EStatusCode.UNAUTHORIZED &&
-    !endpoint.includes("auth/refresh")
+    !endpoint.includes('auth/refresh') &&
+    !endpoint.includes('auth/login') &&
+    !endpoint.includes('auth/registration')
   ) {
     if (!isRefreshing) {
       isRefreshing = true;
@@ -79,9 +73,9 @@ export const apiClient = async <T>(
     if (refreshSuccess) {
       response = await fetch(url, config);
     } else {
-      if (typeof window !== "undefined") redirect("/login");
+      if (typeof window !== 'undefined') redirect('/login');
 
-      throw new Error("Session is excepted");
+      throw new Error('Session is excepted');
     }
   }
 
@@ -97,7 +91,7 @@ const refreshToken = async (): Promise<boolean> => {
   try {
     const res = await fetch(`${BASE_URL}/auth/refresh`, {
       method: EMethod.POST,
-      credentials: "include",
+      credentials: 'include'
     });
 
     return res.ok;

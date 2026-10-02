@@ -1,5 +1,5 @@
-import classNames from "classnames";
-import { ReactNode } from "react";
+import classNames from 'classnames';
+import { ReactNode } from 'react';
 
 interface IFormContainerProps {
   onFormChanged?: () => void;
@@ -12,14 +12,14 @@ export const FormContainer = ({
   children,
   className,
   onFormChanged,
-  onSubmit,
+  onSubmit
 }: IFormContainerProps) => {
   return (
     <form
-      className={classNames("form-container", className)}
+      className={classNames('form-container', className)}
       onChange={onFormChanged}
       onSubmit={onSubmit}
-      data-testid="form-element-test-id"
+      data-testid='form-element-test-id'
     >
       {children}
     </form>

@@ -1,7 +1,7 @@
-import classNames from "classnames";
-import { FC } from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import "./Text.css";
+import classNames from 'classnames';
+import { FC } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+import './Text.css';
 
 interface ITextComponentProps {
   name: string;
@@ -18,13 +18,8 @@ const Text: FC<ITextComponentProps> = ({ name, required, label }) => {
       control={control}
       rules={{ required }}
       render={({ field }) => (
-        <div className={classNames("input-component")}>
-          <input
-            className={classNames("input")}
-            id={name}
-            placeholder={label}
-            {...field}
-          />
+        <div className={classNames('input-component')}>
+          <input className={classNames('input')} id={name} placeholder={label} {...field} />
         </div>
       )}
     />
