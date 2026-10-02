@@ -1,12 +1,17 @@
-import Button from "@components/Button";
-import GoogleIcon from "@icons/GoogleIcon";
-import "./GoogleButton.css";
+import Link from 'next/link';
+import Button from '@components/Button';
+import IconGoogle from '@icons/IconGoogle';
+import './GoogleButton.css';
 
 const GoogleButton = () => {
+  const backendGoogleUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google`;
+
   return (
-    <Button type="button" className="google-button">
-      <GoogleIcon /> Continue with Google
-    </Button>
+    <Link href={backendGoogleUrl} className='block w-full'>
+      <Button type='button' className='google-button w-full'>
+        <IconGoogle /> Continue with Google
+      </Button>
+    </Link>
   );
 };
 

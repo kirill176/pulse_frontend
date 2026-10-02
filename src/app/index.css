@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 * {
   padding: 0px;
   margin: 0px;
@@ -81,7 +83,7 @@ textarea {
 }
 
 button,
-input[type="submit"] {
+input[type='submit'] {
   display: inline-block;
   box-shadow: none;
   background-color: transparent;
@@ -102,14 +104,22 @@ legend {
   display: block;
 }
 
-input[type="file"] {
+input[type='file'] {
   max-width: 100%;
+}
+
+body {
+  height: 100vh;
 }
 
 :root {
   --grey-300: #d5d7db;
+  --grey-400: #94a3b8;
   --grey-500: #8a8d94;
+  --grey-600: #64748b;
+  --grey-700: #1e293b;
   --primary-blue: #0f62fe;
   --error-200: #fae1e5;
   --dark-red: #ed3d3b;
+  --dark-blue: #0f172a;
 }
