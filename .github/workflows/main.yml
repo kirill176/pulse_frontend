@@ -1,0 +1,17 @@
+name: Main Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  run-ci:
+    uses: ./.github/workflows/ci.yml
+
+  runc-cd:
+    needs: run-ci
+    uses: ./.github/workflows/cd.yml
+    with:
+      environment: 'production'
+    secrets:
+      AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
